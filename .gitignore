@@ -1,0 +1,8 @@
+# Ignore massive original installers and flash dumps
+02_host_clients/
+03_captures_configs/
+archive_dead_ends.tar.gz
+
+# Ignore Python cache
+__pycache__/
+*.pyc
