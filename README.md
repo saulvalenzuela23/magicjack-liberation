@@ -15,8 +15,6 @@ Reverse engineering the magicJack USB dongle to bypass the proprietary Windows c
 *   **`01_core_firmware/`**: The raw, uncompressed eCos firmware extracted directly from the SPI flash dump (`dump1.bin`).
     *   `boot_firmware_raw.bin`: Bootloader and RTC init.
     *   `app_firmware_raw.bin`: Main VoIP application (SIP stack, FXS control).
-*   **`02_host_clients/`**: The official Windows (`upgr811.exe`) and macOS (`upgr811.mac`) installers, along with the fully extracted Windows client and USB driver (`TjIpSys.dll`).
-*   **`03_captures_configs/`**: UART logs, Wireshark captures, and SIP config strings.
 *   **`04_scripts/`**: Python scripts used to analyze the firmware, carve the binaries, and map the Ghidra decompilation.
 *   **`06_python_driver/`**: **The Holy Grail.** Our custom PyUSB driver that completely replaces `TjIpSys.dll`.
 
@@ -26,6 +24,7 @@ By decompiling `TjIpSys.dll` in Ghidra, we mapped the exact wire protocol. The m
 
 ### Packet Format
 Every command is a 10-byte header followed by a variable payload:
+
 ```text
 [ 04 00 00 00 ]  [ CMD ]  [ LEN ]  [ 00 55 ]  [ PAYLOAD ]
   Magic/Report    16-bit    16-bit   Sync      Data
